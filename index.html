@@ -62,7 +62,7 @@
 
         /* SEKSI BAWAH (ACARA & LINK) - POSISI KANAN */
         .events-section {
-            height: 52%;
+            height: 42%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -79,7 +79,7 @@
 
         .event-title {
             font-family: 'Playfair Display', serif;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             color: #382d24;
             margin: 0 0 4px 0;
