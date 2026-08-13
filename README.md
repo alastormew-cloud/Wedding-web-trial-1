@@ -1,1 +1,391 @@
-# Wedding-web-trial-1
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Billie & Nicole — Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <style>
+        :root{
+            --cream:#f7efe6;
+            --ivory:#fffaf1;
+            --brown:#2e1f18;
+            --mocha:#3b2a23;
+            --gold:#c9b89f;
+            --dark-gold:#4a3b2c;
+            --muted:#7b6a61;
+            --max-width:1100px;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%;margin:0;font-family:'Montserrat',system-ui,Arial;padding:0;background:var(--ivory);color:var(--brown);-webkit-font-smoothing:antialiased}
+        a{color:inherit;text-decoration:none}
+        .container{max-width:var(--max-width);margin:0 auto;padding:24px}
+
+        /* CONTAINER UTAMA BERBACKGROUND GAMBAR */
+        .hero-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        /* TAG IMG UNTUK BACKGROUND */
+        .bg-template {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* OVERLAY ISI AGAR PAS DENGAN GAMBAR */
+        .overlay-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* SEKSI ATAS (HEADER/TEXT) */
+        .top-section {
+            height: 48%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        /* SEKSI BAWAH (ACARA & LINK) - POSISI KANAN */
+        .events-section {
+            height: 72%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-end; /* Memindahkan konten ke kanan */
+            padding-right: 8%; /* Menyesuaikan jarak kanan */
+            padding-top: 5%;
+        }
+
+        .event-box {
+            text-align: center;
+            margin-bottom: 25px;
+            width: 280px;
+        }
+
+        .event-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #382d24;
+            margin: 0 0 4px 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .event-details {
+            font-size: 20px;
+            color: #55483d;
+            margin: 2px 0;
+            line-height: 1.4;
+        }
+
+        .see-location-btn {
+            display: inline-block;
+            margin-top: 8px;
+            background: #4a3b2c;
+            color: #fff !important;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-size: 25px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        .see-location-btn:hover {
+            background: #2e1f18;
+        }
+
+        /* COUNTDOWN & TIMELINE (OPSIONAL / DIBAWAH GAMBAR) */
+        .save-date{background:var(--cream);padding:48px 16px;text-align:center}
+        .save-date h3{letter-spacing:2px;color:var(--muted);margin:0}
+        .event-date{font-family:'Playfair Display';font-size:24px;margin:8px 0;color:var(--brown)}
+        .location{color:var(--muted);margin-bottom:12px}
+        .countdown{display:flex;gap:12px;justify-content:center;margin-top:18px}
+        .countdown .unit{background:rgba(0,0,0,0.04);padding:12px 14px;border-radius:8px;min-width:70px}
+        .unit .num{font-family:'Playfair Display';font-size:20px}
+        .unit .label{font-size:11px;color:var(--muted);margin-top:4px}
+
+        /* Timeline */
+        .timeline{padding:48px 16px}
+        .timeline h3{font-family:'Playfair Display';font-size:20px;text-align:center;margin-bottom:18px}
+        .timeline-list{display:flex;gap:14px;justify-content:space-between;flex-wrap:wrap}
+        .timeline-item{flex:1 1 200px;background:var(--ivory);border-left:3px solid var(--gold);padding:14px;border-radius:8px}
+        .timeline-item .year{font-weight:700;color:var(--mocha)}
+
+        /* Dress code + RSVP */
+        .rsvp-section{padding:28px 16px;background:var(--ivory)}
+        .rsvp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+        form{background:var(--cream);padding:18px;border-radius:8px}
+        label{display:block;font-size:13px;margin:8px 0 6px;color:var(--muted)}
+        input[type=text],select,textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px}
+        textarea{min-height:120px}
+        .submit-btn{background:var(--brown);color:var(--ivory);padding:12px 16px;border-radius:8px;border:none;cursor:pointer;margin-top:12px;width:100%;font-weight:600;}
+
+        /* Counter (people) */
+        .counter{display:inline-flex;align-items:center;gap:8px}
+        .counter button{width:36px;height:36px;border-radius:6px;border:1px solid #ddd;background:#fff;font-size:20px;line-height:1;cursor:pointer}
+        .counter input[type=number]{width:64px;text-align:center;padding:8px;border:1px solid #ddd;border-radius:6px;font-size:14px}
+
+        /* Footer */
+        footer{padding:28px 16px;text-align:center;color:var(--muted)}
+        .monogram{width:60px;height:60px;border-radius:999px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto;font-family:'Playfair Display';font-size:18px;color:var(--brown);}
+
+        /* Responsive Penyesuaian Mobile */
+        @media (max-width: 600px) {
+            .events-section {
+                padding-right: 4%;
+            }
+            .event-box {
+                width: 200px;
+            }
+            .event-title { font-size: 20px; }
+            .event-details { font-size: 10px; }
+            .see-location-btn { padding: 4px 12px; font-size: 10px; }
+            .rsvp-grid{grid-template-columns:1fr}
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <!-- WRAPPER DENGAN BACKGROUND GAMBAR -->
+        <div class="hero-wrapper">
+            <!-- PENTING: Masukkan file gambar Anda di bawah ini -->
+            <img src="img/Wedding web background.png" alt="Wedding Background" class="bg-template" />
+
+            <!-- LAPISAN KONTEN DI ATAS GAMBAR -->
+            <div class="overlay-content">
+                <!-- BAGIAN ATAS (Sudah ada teks bawaan pada gambar) -->
+                <div class="top-section"></div>
+
+                <!-- BAGIAN KANAN (LOKASI & DETAIL ACARA) -->
+                <div class="events-section">
+                    <!-- HOLY MATRIMONY -->
+                    <div class="event-box">
+                        <div class="event-title">HOLY MATRIMONY</div>
+                        <div class="event-details">Sabtu, 18.09.2027</div>
+                        <div class="event-details">10:00 AM</div>
+                        <div class="event-details">📍 JAVA PARAGON HOTEL</div>
+                        <a class="see-location-btn" href="https://www.google.com/maps/search/Java+Paragon+Hotel+Surabaya" target="_blank">See location</a>
+                    </div>
+
+                    <!-- RECEPTION -->
+                    <div class="event-box">
+                        <div class="event-title">RECEPTION</div>
+                        <div class="event-details">Sabtu, 18.09.2027</div>
+                        <div class="event-details">06:30 PM</div>
+                        <div class="event-details">📍 JAVA PARAGON Ballroom</div>
+                        <a class="see-location-btn" href="https://www.google.com/maps/search/Java+Paragon+Hotel+Surabaya" target="_blank">See location</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COUNTDOWN SECTION -->
+        <section class="save-date" id="save-date">
+            <div class="container">
+                <h3 data-aos="fade-up">SAVE THE DATE</h3>
+                <div class="event-date" data-aos="fade-up" data-aos-delay="60">Saturday 18 September 2027</div>
+                <div class="location" data-aos="fade-up" data-aos-delay="80">Java Paragon Hotel, Surabaya</div>
+                <div class="countdown" id="countdown" data-aos="fade-up" data-aos-delay="120">
+                    <div class="unit"><div class="num" id="days">--</div><div class="label">Days</div></div>
+                    <div class="unit"><div class="num" id="hours">--</div><div class="label">Hours</div></div>
+                    <div class="unit"><div class="num" id="minutes">--</div><div class="label">Minutes</div></div>
+                    <div class="unit"><div class="num" id="seconds">--</div><div class="label">Seconds</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMELINE SECTION -->
+        <section class="timeline container" id="story">
+            <h3 data-aos="fade-up">A love to remember - Every chapter led us here.</h3>
+            <div class="timeline-list" data-aos="fade-up" data-aos-delay="80">
+                <div class="timeline-item"><div class="year">2019</div><div>First met</div></div>
+                <div class="timeline-item"><div class="year">2021</div><div>First date</div></div>
+                <div class="timeline-item"><div class="year">2025</div><div>Engaged</div></div>
+                <div class="timeline-item"><div class="year">2027</div><div>We say I do</div></div>
+            </div>
+        </section>
+
+        <!-- RSVP SECTION (DIBAWAH GAMBAR) -->
+        <section class="rsvp-section" id="rsvp">
+            <div class="container">
+                <div style="text-align:center" data-aos="fade-up">
+                    <h3>Dress Code</h3>
+                    <p class="location">Smart Formal — Gentlemen in suits, ladies in evening dresses.</p>
+                </div>
+
+                <div class="rsvp-grid" data-aos="fade-up" data-aos-delay="80">
+                    <div>
+                        <h3>RSVP & Confirmation</h3>
+                        <form id="rsvpForm">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+
+                            <label for="attendance">Attendance</label>
+                            <select id="attendance" name="attendance">
+                                <option value="attending">Attending</option>
+                                <option value="not_attending">Not Attending</option>
+                            </select>
+
+                            <label for="food">Food Preference</label>
+                            <select id="food" name="food">
+                                <option>No Preference</option>
+                                <option>Vegetarian</option>
+                                <option>Halal</option>
+                            </select>
+
+                            <label for="Pax">Number of Pax?</label>
+                            <div class="counter" role="group" aria-label="Number of Pax">
+                                <button type="button" class="decrease" aria-label="Decrease">−</button>
+                                <input type="number" id="Pax" name="Pax" value="1" min="1" max="10" />
+                                <button type="button" class="increase" aria-label="Increase">+</button>
+                            </div>
+
+                            <label for="message">Leave a little note...</label>
+                            <textarea id="message" name="message" placeholder="Write your wishes here..."></textarea>
+
+                            <button class="submit-btn" type="submit">CONFIRM ATTENDANCE</button>
+                        </form>
+                    </div>
+
+                    <div>
+                        <h3>Practical Info</h3>
+                        <p><strong>Venue:</strong> Java Paragon Hotel, Surabaya</p>
+                        <p><strong>Parking:</strong> Valet available</p>
+                        <p><strong>Contact:</strong> +62 812-3456-7890</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="monogram">B &amp; N</div>
+                <p style="margin-top:12px">With love, Billie &amp; Nicole — September 18, 2027 — Surabaya</p>
+            </div>
+        </footer>
+    </main>
+
+    <audio id="bgMusic" src="" preload="none"></audio>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({duration:700, once:true});
+
+        // Countdown Timer
+        const target = new Date(2027, 8, 18, 17, 0, 0); 
+        function updateCountdown(){
+            const now = new Date();
+            const diff = target - now;
+            if(diff <= 0){
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+                clearInterval(timerId);
+                return;
+            }
+            const secs = Math.floor(diff / 1000);
+            const days = Math.floor(secs / 86400);
+            const hours = Math.floor((secs % 86400) / 3600);
+            const minutes = Math.floor((secs % 3600) / 60);
+            const seconds = secs % 60;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+        const timerId = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // People counter (+ / -) logic
+        (function(){
+            const dec = document.querySelector('.counter .decrease');
+            const inc = document.querySelector('.counter .increase');
+            const input = document.getElementById('Pax');
+            if(!input) return;
+            const min = parseInt(input.min || '1', 10);
+            const max = parseInt(input.max || '10', 10);
+            dec.addEventListener('click', ()=>{
+                let v = parseInt(input.value || '1', 10);
+                if(v > min) input.value = v - 1;
+            });
+            inc.addEventListener('click', ()=>{
+                let v = parseInt(input.value || '1', 10);
+                if(v < max) input.value = v + 1;
+            });
+            input.addEventListener('input', ()=>{
+                let v = parseInt(input.value || String(min), 10);
+                if(isNaN(v) || v < min) input.value = min;
+                else if(v > max) input.value = max;
+            });
+        })();
+
+        // PENGIRIMAN FORM RSVP KE GOOGLE SHEETS
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby0WOWDRl65ZrTMQJ3E51gCK8pA77CGHhDfKm6mHN5oCUcxrYefluxIyiYZUpuGgWCO7w/exec';
+
+        const form = document.getElementById('rsvpForm');
+        const submitBtn = form.querySelector('.submit-btn');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (SCRIPT_URL === 'PASTE_WEB_APP_URL_ANDA_DI_SINI' || !SCRIPT_URL) {
+                alert('Silakan masukkan SCRIPT_URL Apps Script Anda terlebih dahulu!');
+                return;
+            }
+
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                attendance: document.getElementById('attendance').value,
+                food: document.getElementById('food').value,
+                pax: document.getElementById('Pax').value,
+                message: document.getElementById('message').value.trim()
+            };
+
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(() => {
+                alert('Terima kasih, ' + formData.name + '! Konfirmasi RSVP Anda berhasil disimpan.');
+                form.reset();
+                document.getElementById('Pax').value = '1';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Maaf, terjadi kesalahan saat mengirim data. Silakan coba lagi.');
+            })
+            .finally(() => {
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
