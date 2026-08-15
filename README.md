@@ -79,7 +79,7 @@
 
         .event-title {
             font-family: 'Playfair Display', serif;
-            font-size: 18px;
+            font-size: 12px;
             font-weight: 700;
             color: #382d24;
             margin: 0 0 4px 0;
