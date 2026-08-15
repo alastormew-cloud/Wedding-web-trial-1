@@ -62,7 +62,7 @@
 
         /* SEKSI BAWAH (ACARA & LINK) - POSISI KANAN */
         .events-section {
-            height: 42%;
+            height: 52%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
