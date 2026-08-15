@@ -62,12 +62,12 @@
 
         /* SEKSI BAWAH (ACARA & LINK) - POSISI KANAN */
         .events-section {
-            height: 30%;
+            height: 52%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items:  center; /* Memindahkan konten ke kanan */
-            padding-right: 1%; /* Menyesuaikan jarak kanan */
+            text-align: center;
             padding-top: 30%;
         }
 
